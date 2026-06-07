@@ -66,4 +66,44 @@ Khi bạn muốn một nút bấm `Button` thực hiện chức năng chuyển t
   <Button title="/Push to fourth" />
 </Link>
 ```
-* **`push`**: Bắt buộc trình điều hướng thực hiện thao tác đẩy màn hình mới đè lên màn hình cũ thay vì thay thế nó.
+* **`push(href)`**: 
+  * Đẩy một màn hình mới lên trên cùng của ngăn xếp (Navigation Stack).
+  * Bạn có thể mở một trang nhiều lần (ví dụ: bấm vào sản phẩm A rồi bấm sản phẩm B, mỗi trang sẽ đè lên nhau).
+  * Người dùng có thể nhấn nút **Quay lại (Back)** để quay về các màn hình trước đó.
+  * **Ví dụ code**:
+    ```tsx
+    import { router, Link } from "expo-router";
+
+    // 1. Dùng thẻ Link:
+    <Link href="/fourth">Đi tới Fourth</Link>
+
+    // 2. Dùng router.push:
+    router.push("/fourth");
+    ```
+
+* **`replace(href)`**:
+  * Thay thế trực tiếp màn hình hiện tại bằng màn hình mới.
+  * Màn hình trước đó sẽ bị xóa khỏi lịch sử ngăn xếp. Người dùng **không thể** quay lại màn hình cũ bằng nút Back.
+  * Thích hợp cho các trường hợp chuyển hướng sau khi Đăng nhập, Đăng xuất, hoặc hoàn thành thanh toán.
+  * **Ví dụ code**:
+    ```tsx
+    import { router, Link } from "expo-router";
+
+    // 1. Dùng thẻ Link (thêm prop replace):
+    <Link href="/fourth" replace>Thay thế bằng Fourth</Link>
+
+    // 2. Dùng router.replace:
+    router.replace("/fourth");
+    ```
+
+* **`dismissTo(href)`**:
+  * Đóng dần (pop) tất cả các màn hình đang mở cho đến khi quay về đúng màn hình được chỉ định.
+  * **Nếu màn hình đích đã tồn tại trong lịch sử stack**: Nó sẽ dọn dẹp (đóng) các màn hình đè lên nó để quay lại màn hình đó.
+  * **Nếu màn hình đích chưa có trong lịch sử stack**: Nó sẽ hoạt động tương tự lệnh `replace` (thay thế trang hiện tại bằng trang mới).
+  * **Ví dụ code**:
+    ```tsx
+    import { router } from "expo-router";
+
+    // Dùng router.dismissTo (chỉ hỗ trợ qua API router):
+    router.dismissTo("/fourth");
+    ```
