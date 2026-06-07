@@ -15,6 +15,12 @@ export default function TabsLayout() {
           title: "Sản phẩm",
         }}
       />
+      <Tabs.Screen
+        name="iosLiquidGlass"
+        options={{
+          title: "LiquidGlass",
+        }}
+      />
     </Tabs>
   );
 }
