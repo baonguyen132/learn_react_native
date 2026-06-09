@@ -31,6 +31,13 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
+        name="modal"
+        options={{
+          tabBarLabel: "Modal",
+          tabBarIcon: () => <Ionicons name="information" color="#000" size={24} />
+        }}
+      />
+      <Tabs.Screen
         name="iosLiquidGlass/index"
         options={{
           tabBarBadge: 2,
