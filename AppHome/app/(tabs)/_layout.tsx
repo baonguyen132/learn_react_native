@@ -31,7 +31,7 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="modal"
+        name="modalrn"
         options={{
           tabBarLabel: "Modal",
           tabBarIcon: () => <Ionicons name="information" color="#000" size={24} />
