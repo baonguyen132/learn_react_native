@@ -6,13 +6,17 @@ Kho lưu trữ (repository) này chứa các dự án và ví dụ thực hành 
 
 ## 🚀 Các dự án hiện có
 
-### 1. ExpoRouter
-Dự án được khởi tạo bằng cấu trúc Expo Router mới nhất sử dụng TypeScript.
+### 1. AppHome
+Dự án thực hành React Native & Expo Router (được đổi tên từ ExpoRouter).
 
-- **Đường dẫn thư mục**: `./ExpoRouter`
+- **Đường dẫn thư mục**: `./AppHome`
+- **Tài liệu học tập liên quan**:
+  - **[📁 Chi tiết Kiến thức & Router (app/README.md)](./AppHome/app/README.md)**: Tổng hợp cấu trúc định tuyến, các dạng Layout (`_layout.tsx`), cách khắc phục lỗi cảnh báo nested children và cấu hình Tab Navigation nâng cao.
+  - **[📁 Nested Navigation (Stack lồng trong Tabs)](./AppHome/app/(tabs)/stacknavigation/README.md)**: Chi tiết cách cấu hình lồng một Stack Navigation bên trong một Tab của Bottom Tabs, tìm hiểu `popToTopOnBlur`, hiển thị huy hiệu thông báo (`tabBarBadge`).
 - **Các tính năng nổi bật**:
-  - Expo Router (hệ thống định tuyến dựa trên cấu trúc file giống như Next.js).
-  - TypeScript đã được cấu hình sẵn.
+  - Cấu trúc hệ thống định tuyến dựa trên file (File-based Routing).
+  - Kết hợp linh hoạt Bottom Tabs Navigation và Stack Navigation.
+  - Sử dụng TypeScript.
   - Hỗ trợ chạy trên Android, iOS và Web.
   - Đã được tối ưu hóa lỗi JSX và hỗ trợ kết nối Tunnel.
 
@@ -30,7 +34,7 @@ npx create-expo-app@latest <Tên_Dự_Án>
 ### 2. Khởi chạy ứng dụng với chế độ Tunnel (Ngrok)
 Chế độ tunnel giúp bạn dễ dàng quét mã QR để kiểm tra ứng dụng trên điện thoại thật (qua app Expo Go) mà không cần chung mạng Wi-Fi với máy tính.
 
-Chạy lệnh sau bên trong thư mục dự án (ví dụ: `ExpoRouter`):
+Chạy lệnh sau bên trong thư mục dự án (ví dụ: `AppHome`):
 ```bash
 npx expo start --tunnel
 ```
