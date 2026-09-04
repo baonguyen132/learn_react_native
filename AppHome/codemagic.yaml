@@ -1,0 +1,8 @@
+workflows:
+  ios-build:
+    name: iOS Build
+    instance_type: mac_mini_m1
+    scripts:
+      - npm install
+      - cd ios && pod install
+      - xcodebuild -workspace ios/*.xcworkspace -scheme "TenAppCuaBan" -configuration Release -archivePath build/ios/iphone.xcarchive archive

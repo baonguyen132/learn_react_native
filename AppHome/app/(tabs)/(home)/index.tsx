@@ -10,6 +10,8 @@ export default function Index() {
       <Button title="Five" onPress={() => router.push("/Five")} />
 
       <Link href="/fourth" style={{ color: "blue" }} push asChild><Button title="/Push to fourth" /></Link>
+
+      
     </View>
   );
 }
