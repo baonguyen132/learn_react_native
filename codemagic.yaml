@@ -19,25 +19,46 @@ workflows:
           npm install
       - name: Generate iOS Native Folder
         script: |
-          # Lệnh này tự sinh thư mục ios trên server Mac nếu chưa có
           npx expo prebuild --platform ios --non-interactive
       - name: Install CocoaPods
         script: |
           cd ios && pod install
-      - name: Build iOS Package
+      - name: Build iOS Package (Bypass Signing)
         script: |
-          # Tìm tên Scheme tự động và tiến hành build Archive
+          # Tìm tên Scheme tự động
           SCHEME_NAME=$(xcodebuild -list -workspace ios/*.xcworkspace | grep -m 1 "Schemes:" -A 1 | tail -n 1 | xargs)
 
+          # Thực hiện Archive bằng cách ép Xcode sử dụng cấu hình ký số Ad-hoc nội bộ không cần Team
           xcodebuild -workspace ios/*.xcworkspace \
             -scheme "$SCHEME_NAME" \
             -configuration Release \
             -archivePath build/ios/iphone.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_METHOD="manual" \
             archive
+
+          # Xuất file .ipa dạng chưa ký (Unsigned)
+          # Tạo tạm file Plist tối giản cho việc export
+          mkdir -p build/ios
+          cat <<EOF > build/ios/exportOptions.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>ad-hoc</string>
+              <key>compileBitcode</key>
+              <false/>
+          </dict>
+          </plist>
+          EOF
 
           xcodebuild -exportArchive \
             -archivePath build/ios/iphone.xcarchive \
             -exportPath build/ios/exported \
-            -exportOptionsPlist ios/$SCHEME_NAME/Info.plist
+            -exportOptionsPlist build/ios/exportOptions.plist \
+            CODE_SIGNING_ALLOWED=NO
     artifacts:
       - build/ios/exported/*.ipa
