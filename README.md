@@ -1,70 +1,56 @@
-# Học React Native với Expo
+# Welcome to your Expo app 👋
 
-Kho lưu trữ (repository) này chứa các dự án và ví dụ thực hành trong quá trình học React Native và Expo.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
----
+## Get started
 
-## 🚀 Các dự án hiện có
+1. Install dependencies
 
-### 1. AppHome
-Dự án thực hành React Native & Expo Router (được đổi tên từ ExpoRouter).
+   ```bash
+   npm install
+   ```
 
-- **Đường dẫn thư mục**: `./AppHome`
-- **Tài liệu học tập liên quan**:
-  - **[📁 Chi tiết Kiến thức & Router (app/README.md)](./AppHome/app/README.md)**: Tổng hợp cấu trúc định tuyến, các dạng Layout (`_layout.tsx`), cách khắc phục lỗi cảnh báo nested children và cấu hình Tab Navigation nâng cao.
-  - **[📁 Nested Navigation (Stack lồng trong Tabs)](./AppHome/app/(tabs)/stacknavigation/README.md)**: Chi tiết cách cấu hình lồng một Stack Navigation bên trong một Tab của Bottom Tabs, tìm hiểu `popToTopOnBlur`, hiển thị huy hiệu thông báo (`tabBarBadge`).
-- **Các tính năng nổi bật**:
-  - Cấu trúc hệ thống định tuyến dựa trên file (File-based Routing).
-  - Kết hợp linh hoạt Bottom Tabs Navigation và Stack Navigation.
-  - Sử dụng TypeScript.
-  - Hỗ trợ chạy trên Android, iOS và Web.
-  - Đã được tối ưu hóa lỗi JSX và hỗ trợ kết nối Tunnel.
+2. Start the app
 
----
+   ```bash
+   npx expo start
+   ```
 
-## 🛠️ Hướng dẫn các lệnh cơ bản
+In the output, you'll find options to open the app in a
 
-### 1. Khởi tạo một dự án Expo mới (Đơn giản nhất)
-Chạy lệnh sau tại thư mục gốc để tạo một dự án Expo mới:
-```bash
-npx create-expo-app@latest <Tên_Dự_Án>
-```
-*Ví dụ:* `npx create-expo-app@latest MyNewApp`
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-### 2. Khởi chạy ứng dụng với chế độ Tunnel (Ngrok)
-Chế độ tunnel giúp bạn dễ dàng quét mã QR để kiểm tra ứng dụng trên điện thoại thật (qua app Expo Go) mà không cần chung mạng Wi-Fi với máy tính.
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-Chạy lệnh sau bên trong thư mục dự án (ví dụ: `AppHome`):
-```bash
-npx expo start --tunnel
-```
+## Get a fresh project
 
-### 3. Khởi tạo lại dự án về trạng thái trống (Reset Project)
-Nếu bạn muốn xóa các file giao diện mẫu của Expo và bắt đầu code từ đầu với một file `index.tsx` và `_layout.tsx` trống, hãy chạy lệnh này bên trong thư mục dự án:
+When you're ready, run:
+
 ```bash
 npm run reset-project
 ```
-*(Lệnh sẽ hỏi bạn có muốn di chuyển các file cũ sang thư mục `/example` để tham khảo hay xóa hẳn).*
 
----
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## 🐛 Giải quyết các lỗi thường gặp (Troubleshooting)
+### Other setup steps
 
-### 1. Lỗi: `Cannot use JSX unless the '--jsx' flag is provided`
-* **Nguyên nhân**: Editor (như VS Code) không tự động nhận diện được cấu hình JSX kế thừa từ Expo.
-* **Cách khắc phục**: Thêm trực tiếp `"jsx": "react-jsx"` vào file `tsconfig.json` trong dự án của bạn:
-  ```json
-  "compilerOptions": {
-    "strict": true,
-    "jsx": "react-jsx",
-    "paths": { ... }
-  }
-  ```
+- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
+- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
+- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
 
-### 2. Lỗi cài đặt `@expo/ngrok` khi chạy lệnh `--tunnel`
-* **Nguyên nhân**: Lỗi khi cài đặt global (`npm install --global @expo/ngrok`) trên Windows do đường dẫn biến môi trường (Environment Path).
-* **Cách khắc phục**: Cài đặt trực tiếp gói `@expo/ngrok` vào devDependencies của dự án bằng lệnh:
-  ```bash
-  npm install -D @expo/ngrok
-  ```
-  Sau khi cài đặt local, lệnh `npx expo start --tunnel` sẽ chạy bình thường mà không yêu cầu cài đặt global nữa.
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
